@@ -12,6 +12,7 @@ process sayHello {
   script:
     """
     echo '$x world!'
+    python3 hello.py
     """
 }
 
