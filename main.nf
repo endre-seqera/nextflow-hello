@@ -1,20 +1,21 @@
 #!/usr/bin/env nextflow
-params.inputWord = "Hello"
+params.sleepInSec = 10
 
 process sayHello {
   cpus 1
   memory '256 MB'
 
   input: 
-    val x
+    val sleepInSec
   output:
     stdout
   script:
     """
-    echo '$x world!'
+    sleep $sleepInSec
+    echo 'Hello sleeping world!'
     """
 }
 
 workflow {
-  Channel.of("$params.inputWord") | sayHello | view
+  Channel.of("$params.sleepInSec") | sayHello | view
 }
