@@ -1,5 +1,5 @@
 #!/usr/bin/env nextflow
-params.sleepInSec = 10
+params.sleepInSec = 180
 
 process sayHello {
   cpus 1
