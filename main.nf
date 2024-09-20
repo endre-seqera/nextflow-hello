@@ -1,20 +1,26 @@
 #!/usr/bin/env nextflow
-params.inputWord = "Hello"
+params.file = "/proc/mounts"
 
-process sayHello {
+process lsFile {
   cpus 1
   memory '256 MB'
 
   input: 
-    val x
+    val file
   output:
     stdout
   script:
     """
-    echo '$x world!'
+    pwd
+    if [ -f "$file" ]; then
+        echo "$file - file exists."
+        cat "$file"
+    else 
+        echo "$file - file does not exist."
+    fi
     """
 }
 
 workflow {
-  Channel.of("$params.inputWord") | sayHello | view
+  Channel.of("$params.file") | lsFile | view
 }
