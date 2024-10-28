@@ -1,20 +1,16 @@
 #!/usr/bin/env nextflow
-params.inputWord = "Hello"
 
-process sayHello {
-  cpus 1
-  memory '256 MB'
+process sayVersion {
+  conda 'env.yaml'
 
-  input: 
-    val x
   output:
     stdout
   script:
     """
-    echo '$x world!'
+    samtools --version
     """
 }
 
 workflow {
-  Channel.of("$params.inputWord") | sayHello | view
+  sayVersion | view
 }
