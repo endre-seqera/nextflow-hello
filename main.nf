@@ -1,20 +1,18 @@
-#!/usr/bin/env nextflow
-params.inputWord = "Hello"
-
-process sayHello {
+process writeHello {
   cpus 1
   memory '256 MB'
 
-  input: 
-    val x
   output:
     stdout
   script:
     """
-    echo '$x world!'
+    echo 'Hello base directory!' > "$baseDir/eend_base_out.txt"
+    echo "$baseDir/eend_base_out.txt"
+    echo 'Hello sub directory!' > "eend_sub_out.txt"
+    pwd 
     """
 }
 
 workflow {
-  Channel.of("$params.inputWord") | sayHello | view
+  writeHello | view
 }
