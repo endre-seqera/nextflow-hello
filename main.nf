@@ -6,8 +6,8 @@ process writeHello {
     stdout
   script:
     """
-    touch "eend_sub_out.txt"
-    echo 'Hello sub directory!' > "eend_sub_out.txt"
+    touch "eend_out.txt"
+    echo 'Hello world!' > "eend_out.txt"
     pwd 
     """
 }
