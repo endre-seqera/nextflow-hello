@@ -9,7 +9,7 @@ process cowsay {
   script:
     """
     #!/bin/sh
-    cowsay "Röff, röff!"
+    pwd | cowsay
     """
 }
 
