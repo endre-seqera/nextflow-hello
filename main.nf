@@ -9,6 +9,8 @@ process cowsay {
   script:
     """
     #!/bin/sh
+    date -R | cowsay
+    sleep 2
     pwd | cowsay
     """
 }
