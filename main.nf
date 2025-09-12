@@ -1,9 +1,12 @@
 #!/usr/bin/env nextflow
 nextflow.enable.dsl = 2
 
+// Parameters
+params.outdir = 'results'
+
 process CSV_REPORT {
     container 'ubuntu:20.04'
-    publishDir "results", mode: 'copy'
+    publishDir "${params.outdir}", mode: 'copy'
     output: path "data.csv"
     script:
     """
@@ -15,7 +18,7 @@ process CSV_REPORT {
 
 process HTML_REPORT {
     container 'ubuntu:20.04'
-    publishDir "results", mode: 'copy'
+    publishDir "${params.outdir}", mode: 'copy'
     output: path "report.html"
     script:
     """
