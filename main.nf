@@ -2,6 +2,7 @@
 nextflow.enable.dsl = 2
 
 process CSV_REPORT {
+    container 'alpine:latest'
     publishDir "results", mode: 'copy'
     output: path "data.csv"
     script:
@@ -13,6 +14,7 @@ process CSV_REPORT {
 }
 
 process HTML_REPORT {
+    container 'alpine:latest'
     publishDir "results", mode: 'copy'
     output: path "report.html"
     script:
