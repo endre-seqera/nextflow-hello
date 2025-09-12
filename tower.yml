@@ -1,7 +1,5 @@
 reports:
   data.csv:
     display: "Sample Data CSV"
-    description: "CSV file containing sample data with values and status"
   report.html:
     display: "Analysis Report"
-    description: "HTML report showing pipeline results"
