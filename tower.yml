@@ -1,5 +1,5 @@
 reports:
-  data.csv:
+  results/data.csv:
     display: "Sample Data CSV"
-  report.html:
+  results/report.html:
     display: "Analysis Report"
