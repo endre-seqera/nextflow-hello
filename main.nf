@@ -15,7 +15,7 @@ process DOWNLOAD {
     #!/bin/bash
     echo "$urls" | tr ',' '\n' | while read url; do      
       name="\${url##*/}"
-      curl -L -o downloaded_\${name} \$url > /dev/null
+      wget -O downloaded_\${name} \$url > /dev/null
       echo "Downloaded \$url"
       df -h
     done
