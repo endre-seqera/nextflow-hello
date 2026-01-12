@@ -1,20 +1,28 @@
 #!/usr/bin/env nextflow
-params.inputWord = "Hello"
 
-process sayHello {
-  cpus 1
-  memory '256 MB'
+nextflow.enable.dsl = 2
 
-  input: 
-    val x
-  output:
-    stdout
-  script:
+params.urls = ''
+
+process DOWNLOAD {
+    input:
+    val urls
+
+    output:
+    path 'downloaded_*', emit: files
+    
     """
-    echo '$x world!'
+    #!/bin/bash
+    echo "$urls" | tr ',' '\n' | while read url; do      
+      name="\${url##*/}"
+      curl -L -o downloaded_\${name} \$url > /dev/null
+      echo "Downloaded \$url"
+      df -h
+    done
     """
 }
 
 workflow {
-  Channel.of("$params.inputWord") | sayHello | view
+    DOWNLOAD(params.urls)  
+    DOWNLOAD.out.files.flatten().view { file -> "Downloaded: ${file}" }
 }
