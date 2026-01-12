@@ -11,8 +11,8 @@ process DOWNLOAD {
     output:
     path 'downloaded_*', emit: files
     
+    script:
     """
-    #!/bin/bash
     echo "$urls" | tr ',' '\n' | while read url; do      
       name="\${url##*/}"
       wget -O downloaded_\${name} \$url > /dev/null
