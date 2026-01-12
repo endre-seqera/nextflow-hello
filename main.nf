@@ -17,6 +17,8 @@ process DOWNLOAD {
       name="\${url##*/}"
       wget -O downloaded_\${name} \$url > /dev/null
       echo "Downloaded \$url"
+      hostname -f
+      hostname -i
       df -h
     done
     """
